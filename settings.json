@@ -1,0 +1,44 @@
+{
+	"proxy_list":[],
+	"proxy_list_EXAMPLE":
+	[
+		{"name":"proxy1","ip":"127.0.0.1","port":9999}
+	],
+	"sources_list":
+	[
+		{
+			"name":"pastebin",
+			"host":"www.pastebin.com",
+			"raw_link":"/raw.php?i=",
+			"link_validate_re":"^/([\\w|\\d]+)$",
+			"invalid_content":"",
+			"update_link":"/ajax/realtime_data.php?q=2&randval="
+		}
+	],
+	"filters_dict":
+	{
+		"base":false,
+		"filters":
+		[
+			{
+				"type":"keyword",
+				"case":"sensitive",
+				"compare":"in",
+				"key_string":"import"
+			},
+			{
+				"type":"word_list",
+				"case":"insensitive",
+				"compare":"in",
+				"compare_EXAMPLE":"in (a in b) or match (a==b)",
+				"list":["$dbhost","$dbpass"]
+			},
+			{
+				"type":"reg",
+				"re":"^/([\\w|\\d]+)$",
+				"flags":"",
+				"flags_EXAMPLE":"Python re flags (ILMSUX)"
+			}
+		]
+	}
+}
