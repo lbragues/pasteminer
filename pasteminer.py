@@ -246,13 +246,7 @@ class MyHTMLParser(HTMLParser):
 			for attr in attrs:
 				for i in xrange(len(attr)):
 					if(attr[i]=="href"):
-						#print "========== LINK FOUND ============"
-						#print attr
-						#print "=================================="
 						self.links.append(attr[i+1])
-						#if(not "/u/" in attr[i+1] and not "/archive/" in attr[i+1]):
-							#print attr[i+1]
-						#	self.links.append(attr[i+1])
 
 class PasteMiner():
 
