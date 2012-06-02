@@ -361,7 +361,7 @@ class PasteMiner():
 							add=False
 							break
 					if(add):
-						print text
+						self.save_file(text)
 				else:
 					add=False
 					#whitelist - must have a true condition
@@ -370,10 +370,17 @@ class PasteMiner():
 							add=True
 							break
 					if(add):
-						print text
+						self.save_file(text)
 		except Exception, e:
 			print "Exception on cleaner! link -> %s" % (link,)
 			print e
+
+	def save_file(self,content):
+		hash=hashlib.sha1(content+str(time.time())).hexdigest()
+		f = open("dump/"+str(hash)+".txt","w")
+		print " === File saved "+str(hash)+" content: "+content[:20]
+		f.write(content)
+		f.close()
 
 import json
 try:
@@ -389,6 +396,11 @@ except Exception, e:
 plist=get_dict(settings,"proxy_list",[])
 slist=get_dict(settings,"sources_list",[])
 fdict=get_dict(settings,"filters_dict",{})
+
+try:
+	os.mkdir("dump")
+except Exception, e:
+	pass
 
 miner = PasteMiner(plist,slist,fdict)
 
