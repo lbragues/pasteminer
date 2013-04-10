@@ -206,7 +206,7 @@ class PasteSource():
         self.raw_link=get_dict(options,"raw_link","/raw.php?i=")
         self.link_validate_re=get_dict(options,"link_validate_re")
         self.invalid_content=get_dict(options,"invalid_content")
-        self.update_link=get_dict(options,"update_link","/ajax/realtime_data.php?q=2&randval=")
+        self.update_link=get_dict(options,"update_link","/archive")
         print " = Source %s loaded!" % (self.name,)
 
     def feed(self,u_reader):
@@ -389,14 +389,14 @@ def catchSignals(signr, stack):
 
 if __name__ == "__main__":
     try:
-    f = open('settings.json', 'r')
+        f = open('settings.json', 'r')
         data=f.read()
-	settings=json.loads(data)
+        settings=json.loads(data)
     except Exception, e:
-	print "Problem loading settings file!"
+        print "Problem loading settings file!"
         print e
-	print "Quitting..."
-	exit(0)
+        print "Quitting..."
+        exit(0)
 
     plist=get_dict(settings,"proxy_list",[])
     slist=get_dict(settings,"sources_list",[])
@@ -420,7 +420,7 @@ if __name__ == "__main__":
     #d=False
     while(True):
         cmd=raw_input("prompt> ")
-	if(cmd=="exit"):
+        if(cmd=="exit"):
             break
 
 
